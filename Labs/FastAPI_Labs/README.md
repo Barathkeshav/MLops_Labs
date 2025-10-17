@@ -2,8 +2,10 @@ Lab 1 - FastAPI Application
 
 Overview
 
-This lab demonstrates building and running a FastAPI application using Docker containers. The application is a Diabetes Prediction API that uses machine learning to predict diabetes progression based on patient health metrics.
-Application Details
+This lab demonstrates building and running a FastAPI application. The application is a Diabetes Prediction API that uses machine learning to predict diabetes progression based on patient health metrics.
+
+Application Details:
+
 This is a RESTful API for predicting diabetes progression with the following endpoints:
 
 GET / - Health check endpoint
