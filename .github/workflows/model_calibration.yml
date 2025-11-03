@@ -2,7 +2,7 @@ name: Periodic Model Calibration
 
 on: 
   schedule:
-    - cron: '0 0 * * *'  #minutes, hours, day, month, day of week 
+    - cron: '0 0 * * *'
 
 jobs:
   retrain:
@@ -24,7 +24,6 @@ jobs:
       run: |
         timestamp=$(date '+%Y%m%d%H%M%S')
         echo "$timestamp" > timestamp.txt
-      id: timestamp 
 
     - name: Check File Permissions
       run: |
@@ -45,31 +44,27 @@ jobs:
         timestamp=$(cat timestamp.txt)
         cd Labs/Github_lab
         python src/evaluate_model.py --timestamp "$timestamp"
-        metrics_filename="${timestamp}_metrics.json"
-        mkdir -p metrics
-        mv $metrics_filename metrics/$metrics_filename
-      continue-on-error: false
 
     - name: Verify Model Was Created
-  run: |
-    timestamp=$(cat timestamp.txt)
-    cd Labs/Github_lab
-    model_filename="models/model_${timestamp}_dt_model.joblib"
-    if [ -f "$model_filename" ]; then
-      echo "✓ Model file created successfully: $model_filename"
-      ls -lh "$model_filename"
-    else
-      echo "✗ Model file not found: $model_filename"
-      exit 1
-    fi
+      run: |
+        timestamp=$(cat timestamp.txt)
+        cd Labs/Github_lab
+        model_filename="models/model_${timestamp}_dt_model.joblib"
+        if [ -f "$model_filename" ]; then
+          echo "Model file created successfully: $model_filename"
+          ls -lh "$model_filename"
+        else
+          echo "Model file not found: $model_filename"
+          exit 1
+        fi
 
     - name: Commit and Push Changes
-  run: |
-    cd Labs/Github_lab
-    git config --global user.email "26876927+raminmohammadi@users.noreply.github.com"
-    git config --global user.name "raminmohammadi"
-    git add metrics/ models/ data/
-    git commit -m "Add metrics, model, and training data [skip ci]" || echo "No changes to commit"
-    git push
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        cd Labs/Github_lab
+        git config --global user.email "26876927+raminmohammadi@users.noreply.github.com"
+        git config --global user.name "raminmohammadi"
+        git add metrics/ models/ data/
+        git commit -m "Add metrics, model, and training data [skip ci]" || echo "No changes to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
