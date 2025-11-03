@@ -46,9 +46,6 @@ jobs:
         timestamp=$(cat timestamp.txt)
         cd Labs/Github_lab
         python src/evaluate_model.py --timestamp "$timestamp"
-        metrics_filename="${timestamp}_metrics.json"
-        mkdir -p metrics
-        mv $metrics_filename metrics/$metrics_filename
       continue-on-error: false
 
     - name: Store and Version the New Model
