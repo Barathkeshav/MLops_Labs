@@ -1,0 +1,25 @@
+2025-11-17 18:58:03,896 - cars_api - INFO - Cars API initialized with 3 cars
+2025-11-17 18:58:03,899 - cars_api - INFO - Starting Cars API server on http://0.0.0.0:8080
+2025-11-17 18:58:03,899 - cars_api - DEBUG - print_this() called - accessing first car
+2025-11-17 18:58:03,899 - cars_api - ERROR - Exception occurred in print_this() function
+Traceback (most recent call last):
+  File "/Users/barathkeshav/Documents/ML Lab/Labs/Logging_lab/src/main.py", line 138, in print_this
+    result = 10 / 0  # This will raise ZeroDivisionError
+             ~~~^~~
+ZeroDivisionError: division by zero
+2025-11-17 19:02:55,203 - cars_api - DEBUG - Fetching all cars from the inventory
+2025-11-17 19:02:55,208 - cars_api - INFO - GET /cars - Returning 3 cars
+2025-11-17 19:05:11,581 - cars_api - DEBUG - Attempting to add new car: {'id': '1', 'make': 'Ford', 'model': 'Mustang', 'year': 2024, 'price': 35000.0}
+2025-11-17 19:05:11,582 - cars_api - WARNING - Duplicate car ID detected: 1. Overwriting existing car.
+2025-11-17 19:05:11,582 - cars_api - INFO - POST /cars - Successfully added car: 2024 Ford Mustang
+2025-11-17 19:31:40,981 - cars_api - DEBUG - Attempting to update car with ID: 1
+2025-11-17 19:31:40,983 - cars_api - WARNING - Significant price increase detected for car 1: $28999.99 -> $70000.00
+2025-11-17 19:31:40,989 - cars_api - INFO - PUT /cars/1 - Successfully updated car: 2023 Toyota Camry
+2025-11-17 19:34:17,168 - cars_api - DEBUG - Searching for car with ID: 999
+2025-11-17 19:34:17,170 - cars_api - ERROR - GET /cars/999 - Car not found
+2025-11-17 19:34:43,479 - cars_api - DEBUG - Attempting to delete car with ID: 2
+2025-11-17 19:34:43,479 - cars_api - INFO - DELETE /cars/2 - Successfully deleted car: 2024 Honda Civic
+2025-11-17 19:34:43,489 - cars_api - DEBUG - Attempting to delete car with ID: 3
+2025-11-17 19:34:43,490 - cars_api - INFO - DELETE /cars/3 - Successfully deleted car: 2024 Tesla Model 3
+2025-11-17 19:34:43,497 - cars_api - DEBUG - Attempting to delete car with ID: 1
+2025-11-17 19:34:43,497 - cars_api - INFO - DELETE /cars/1 - Successfully deleted car: 2023 Toyota Camry
